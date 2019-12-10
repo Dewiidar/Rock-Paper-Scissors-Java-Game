@@ -1,10 +1,48 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <h2>Please choose player 1 type:</h2>
-  <button>Player</button>
-  <button>Computer</button>
-</div>
+<div class="game-container">
+  <div>
+    <div class="main-title">Paper Rock Scissors Game</div>
+    <h3>Please choose player 1 type:</h3>
 
+    <div class="player-1-choice">
+      <div class="radio-buttons-wrapper">
+        <input type="radio" class="radio-button" name="player1type" value="player" id="button1" checked/>
+        <label for="button1">You</label>
+        <input type="radio" class="radio-button" name="player1type" value="computer" id="button2"/>
+        <label for="button2">Computer</label>
+      </div>
+    </div>
+  </div>
+
+  <app-score-board></app-score-board>
+
+  <h3 style="margin-bottom: 0;">Make your move</h3>
+  <div class="play-your-move">
+    <div class="player-1-image">
+
+      <input type="radio" class="radio-button" name="player1choice" value="rock" id="rock"/>
+      <label for="rock">
+        <img src="/assets/images/rock-l.png" alt="">
+      </label>
+
+      <input type="radio" class="radio-button" name="player1choice" value="paper" id="paper" checked/>
+      <label for="paper">
+        <img src="/assets/images/paper-l.png" alt="">
+      </label>
+
+      <input type="radio" class="radio-button" name="player1choice" value="scissors" id="scissors"/>
+      <label for="scissors">
+        <img src="/assets/images/scissors-l.png" alt="">
+      </label>
+
+    </div>
+
+    <div class="player-2-image">
+      <img src="/assets/images/paper-r.png" alt="">
+    </div>
+  </div>
+
+  <button>Play</button>
+
+  <app-modal></app-modal>
+
+</div>

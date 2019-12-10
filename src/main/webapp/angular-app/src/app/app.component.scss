@@ -1,0 +1,51 @@
+// Variables
+$light_red: #e2584d;
+
+.game-container {
+  background-color: #333;
+  width: 100%;
+  min-height: 100%;
+  color: white;
+
+  & > * {
+    margin-bottom: 20px;
+  }
+
+  .main-title {
+    font-size: 2em;
+    font-weight: bold;
+    padding-top: 30px;
+  }
+
+  //Move images container
+  .play-your-move {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+
+    .player-1-image {
+      display: flex;
+      flex-flow: column;
+    }
+
+    img {
+      width: 110px;
+      height: auto;
+    }
+
+    label {
+      border: 0;
+      margin: 0;
+      padding: 10px;
+      &:first-of-type, &:last-of-type {
+        border-radius: 10px;
+      }
+    }
+
+    input {
+      font-size: 0;
+    }
+  }
+
+}
