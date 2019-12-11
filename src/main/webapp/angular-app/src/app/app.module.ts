@@ -6,6 +6,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { ScoreBoardComponent } from './components/score-board/score-board.component';
 import {HttpClientModule} from "@angular/common/http";
 import {GameStateService} from "./services/game-state.service";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {GameStateService} from "./services/game-state.service";
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [GameStateService],

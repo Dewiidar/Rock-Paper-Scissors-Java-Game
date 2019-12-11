@@ -5,9 +5,9 @@
 
     <div class="player-1-choice">
       <div class="radio-buttons-wrapper">
-        <input type="radio" class="radio-button" name="player1type" value="player" id="button1" checked/>
+        <input type="radio" class="radio-button" #player1TypePlayer name="player1Type" value="player" id="button1" checked (click)="onPlayer1TypeChange(player1TypePlayer.value)"/>
         <label for="button1">You</label>
-        <input type="radio" class="radio-button" name="player1type" value="computer" id="button2"/>
+        <input type="radio" class="radio-button" #player1TypeComputer name="player1Type" value="computer" id="button2" (click)="onPlayer1TypeChange(player1TypeComputer.value)"/>
         <label for="button2">Computer</label>
       </div>
     </div>
@@ -18,18 +18,20 @@
   <h3 style="margin-bottom: 0;">Make your move</h3>
   <div class="play-your-move">
     <div class="player-1-image">
+      <div class="title">Player 1</div>
+      <div class="sub-title">You</div>
 
-      <input type="radio" class="radio-button" name="player1choice" value="rock" id="rock"/>
+      <input type="radio" class="radio-button" #rock name="player1choice" value="rock" id="rock" (click)="onPlayer1ChoiceChange(rock.value)"/>
       <label for="rock">
         <img src="/assets/images/rock-l.png" alt="">
       </label>
 
-      <input type="radio" class="radio-button" name="player1choice" value="paper" id="paper" checked/>
+      <input type="radio" class="radio-button" #paper name="player1choice" value="paper" id="paper" checked (click)="onPlayer1ChoiceChange(paper.value)"/>
       <label for="paper">
         <img src="/assets/images/paper-l.png" alt="">
       </label>
 
-      <input type="radio" class="radio-button" name="player1choice" value="scissors" id="scissors"/>
+      <input type="radio" class="radio-button" #scissors name="player1choice" value="scissors" id="scissors" (click)="onPlayer1ChoiceChange(scissors.value)"/>
       <label for="scissors">
         <img src="/assets/images/scissors-l.png" alt="">
       </label>
@@ -37,11 +39,13 @@
     </div>
 
     <div class="player-2-image">
+      <div class="title">Player 2</div>
+      <div class="sub-title">Computer</div>
       <img src="/assets/images/paper-r.png" alt="">
     </div>
   </div>
 
-  <button>Play</button>
+  <button (click)="evaluateWinner()">Play</button>
 
   <app-modal></app-modal>
 
