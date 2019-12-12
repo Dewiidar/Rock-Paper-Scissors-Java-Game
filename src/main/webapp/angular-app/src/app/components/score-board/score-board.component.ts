@@ -8,10 +8,10 @@ import {IPlayerType} from "../../services/i-game-state";
   styleUrls: ['./score-board.component.scss']
 })
 export class ScoreBoardComponent implements OnInit {
-  private player1Score: number;
-  private player2Score: number;
+  public player1Score: number;
+  public player2Score: number;
 
-  private player1Type: IPlayerType;
+  public player1Type: IPlayerType;
 
   constructor(private gameStateService: GameStateService) {
   }

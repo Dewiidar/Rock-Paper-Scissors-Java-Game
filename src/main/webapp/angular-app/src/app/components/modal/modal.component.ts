@@ -9,9 +9,9 @@ import {Observable} from "rxjs";
 })
 export class ModalComponent implements OnInit {
 
-  private isModalShown: boolean;
-  private modalMessage: Observable<string>;
-  private modalSubMessage: Observable<string>;
+  public isModalShown: boolean;
+  public modalMessage: Observable<string>;
+  public modalSubMessage: Observable<string>;
 
   constructor(private gameStateService: GameStateService) {
   }

@@ -11,13 +11,13 @@ export class AppComponent implements OnInit {
   // Player 2 choice (Random from server)
 
   // Initialization object
-  private model: IModel = {
+  public model: IModel = {
     player1Type: 'player',
     player1choice: 'paper',
     player2choice: null
   };
   // Holds player 1 type notifications when type change
-  private player1Type: IPlayerType;
+  public player1Type: IPlayerType;
 
   constructor(private gameStateService: GameStateService) {
   }
@@ -33,15 +33,15 @@ export class AppComponent implements OnInit {
     )
   }
 
-  private onPlayer1TypeChange(value: string) {
+  public onPlayer1TypeChange(value: string) {
     this.gameStateService.playerTypeSubject.next(<IPlayerType>value);
   }
 
-  private onPlayer1ChoiceChange(value: string) {
+  public onPlayer1ChoiceChange(value: string) {
     this.gameStateService.playerChoiceSubject.next(<IPlayerChoice>value);
   }
 
-  private evaluateWinner() {
+  public evaluateWinner() {
     this.gameStateService.evaluateWinner().subscribe(
       response => {
         console.log(response);
