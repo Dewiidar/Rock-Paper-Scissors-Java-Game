@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {IPlayerChoice, IPlayerType, IResponseObject} from "./i-game-state";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -32,9 +33,15 @@ export class GameStateService {
   public modalSubMessageObservable$ = this.modalSubMessageSubject.asObservable();
 
   // ======= Base Url for evaluating winner =======
-  private baseUrl = "http://localhost:8080/game/v1";
+  private baseUrl: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    if (environment.production) {
+      this.baseUrl = "https://rock-paper-scissors-dewiidar.herokuapp.com/game/v1";
+    } else {
+      this.baseUrl = "http://localhost:8080/game/v1";
+    }
+  }
 
   public evaluateWinner(): Observable<IResponseObject> {
     console.log(`${this.baseUrl}/${this.playerChoiceSubject.value}/${this.playerTypeSubject.value}`);
