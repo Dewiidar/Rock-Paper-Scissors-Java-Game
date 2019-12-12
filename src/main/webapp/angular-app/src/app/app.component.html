@@ -5,9 +5,11 @@
 
     <div class="player-1-choice">
       <div class="radio-buttons-wrapper">
-        <input type="radio" class="radio-button" #player1TypePlayer name="player1Type" value="player" id="button1" checked (click)="onPlayer1TypeChange(player1TypePlayer.value)"/>
+        <input type="radio" class="radio-button" #player1TypePlayer name="player1Type" value="player" id="button1"
+               checked (click)="onPlayer1TypeChange(player1TypePlayer.value)"/>
         <label for="button1">You</label>
-        <input type="radio" class="radio-button" #player1TypeComputer name="player1Type" value="computer" id="button2" (click)="onPlayer1TypeChange(player1TypeComputer.value)"/>
+        <input type="radio" class="radio-button" #player1TypeComputer name="player1Type" value="computer" id="button2"
+               (click)="onPlayer1TypeChange(player1TypeComputer.value)"/>
         <label for="button2">Computer</label>
       </div>
     </div>
@@ -15,36 +17,50 @@
 
   <app-score-board></app-score-board>
 
-  <h3 style="margin-bottom: 0;">Make your move</h3>
+  <h3>Make your move</h3>
   <div class="play-your-move">
-    <div class="player-1-image">
-      <div class="title">Player 1</div>
-      <div class="sub-title">You</div>
+    <div class="titles-container">
+      <div class="player-1-title">
+        <div class="title">Player 1</div>
+        <div class="sub-title">{{player1Type}}</div>
+      </div>
 
-      <input type="radio" class="radio-button" #rock name="player1choice" value="rock" id="rock" [checked]="model.player1choice === 'rock'" (click)="onPlayer1ChoiceChange(rock.value)"/>
-      <label for="rock">
-        <img src="/assets/images/rock-l.png" alt="">
-      </label>
-
-      <input type="radio" class="radio-button" #paper name="player1choice" value="paper" id="paper" [checked]="model.player1choice === 'paper'" (click)="onPlayer1ChoiceChange(paper.value)"/>
-      <label for="paper">
-        <img src="/assets/images/paper-l.png" alt="">
-      </label>
-
-      <input type="radio" class="radio-button" #scissors name="player1choice" value="scissors" id="scissors" [checked]="model.player1choice === 'scissors'" (click)="onPlayer1ChoiceChange(scissors.value)"/>
-      <label for="scissors">
-        <img src="/assets/images/scissors-l.png" alt="">
-      </label>
-
+      <div class="player-2-title">
+        <div class="title">Player 2</div>
+        <div class="sub-title">Computer</div>
+      </div>
     </div>
 
-    <div class="player-2-image">
-      <div class="title">Player 2</div>
-      <div class="sub-title">Computer</div>
-      <ng-container *ngIf="model.player2choice">
-        <img src="/assets/images/{{model.player2choice}}-r.png" alt="">
-      </ng-container>
+    <div class="images-container">
+      <div class="player-1-image">
+
+        <input type="radio" class="radio-button" #rock name="player1choice" value="rock" id="rock"
+               [checked]="model.player1choice === 'rock'" (click)="onPlayer1ChoiceChange(rock.value)"/>
+        <label for="rock">
+          <img src="/assets/images/rock-l.png" alt="">
+        </label>
+
+        <input type="radio" class="radio-button" #paper name="player1choice" value="paper" id="paper"
+               [checked]="model.player1choice === 'paper'" (click)="onPlayer1ChoiceChange(paper.value)"/>
+        <label for="paper">
+          <img src="/assets/images/paper-l.png" alt="">
+        </label>
+
+        <input type="radio" class="radio-button" #scissors name="player1choice" value="scissors" id="scissors"
+               [checked]="model.player1choice === 'scissors'" (click)="onPlayer1ChoiceChange(scissors.value)"/>
+        <label for="scissors">
+          <img src="/assets/images/scissors-l.png" alt="">
+        </label>
+
+      </div>
+
+      <div class="player-2-image">
+        <ng-container *ngIf="model.player2choice">
+          <img src="/assets/images/{{model.player2choice}}-r.png" alt="">
+        </ng-container>
+      </div>
     </div>
+
   </div>
 
   <button (click)="evaluateWinner()">Play</button>

@@ -16,22 +16,29 @@ export class AppComponent implements OnInit {
     player1choice: 'paper',
     player2choice: null
   };
+  // Holds player 1 type notifications when type change
+  private player1Type: IPlayerType;
 
   constructor(private gameStateService: GameStateService) {
   }
 
   ngOnInit(): void {
     // Initialization
-    this.gameStateService.playerType = this.model.player1Type;
-    this.gameStateService.playerChoice = this.model.player1choice;
+    this.gameStateService.playerTypeSubject.next(this.model.player1Type);
+    this.gameStateService.playerChoiceSubject.next(this.model.player1choice);
+
+    // Subscribes to Player 1 Type notifications
+    this.gameStateService.playerType$.subscribe(
+      playerType => this.player1Type = playerType
+    )
   }
 
   private onPlayer1TypeChange(value: string) {
-    this.gameStateService.playerType = <IPlayerType>value;
+    this.gameStateService.playerTypeSubject.next(<IPlayerType>value);
   }
 
   private onPlayer1ChoiceChange(value: string) {
-    this.gameStateService.playerChoice = <IPlayerChoice>value;
+    this.gameStateService.playerChoiceSubject.next(<IPlayerChoice>value);
   }
 
   private evaluateWinner() {
@@ -48,8 +55,9 @@ export class AppComponent implements OnInit {
           // Iterates score
           this.iterateScore(response.resultsObject.resultsMessage);
 
-          // Notifies modal with the new response message
+          // Notifies modal with the new response messages
           this.gameStateService.modalMessageSubject.next(response.resultsObject.resultsMessage);
+          this.gameStateService.modalSubMessageSubject.next(response.resultsObject.weaponMessage);
           // Opens modal
           this.gameStateService.isModalOpenSubject.next(true);
         }
@@ -70,7 +78,7 @@ export class AppComponent implements OnInit {
         this.model.player2choice = 'scissors';
         break;
       case '':
-        this.model.player2choice = this.gameStateService.playerChoice;
+        this.model.player2choice = null;
     }
 
   }

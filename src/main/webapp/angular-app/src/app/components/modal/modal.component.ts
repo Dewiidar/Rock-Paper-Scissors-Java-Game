@@ -11,6 +11,7 @@ export class ModalComponent implements OnInit {
 
   private isModalShown: boolean;
   private modalMessage: Observable<string>;
+  private modalSubMessage: Observable<string>;
 
   constructor(private gameStateService: GameStateService) {
   }
@@ -25,8 +26,9 @@ export class ModalComponent implements OnInit {
       }
     );
 
-    // Get modal message
-    this.modalMessage = this.gameStateService.modalMessageObservable$
+    // Get modal messages
+    this.modalMessage = this.gameStateService.modalMessageObservable$;
+    this.modalSubMessage = this.gameStateService.modalSubMessageObservable$;
   }
 
   openModal() {

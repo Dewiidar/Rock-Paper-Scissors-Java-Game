@@ -23,10 +23,28 @@ $light_red: #e2584d;
     justify-content: center;
     align-items: center;
     margin-bottom: 0;
+    flex-flow: column;
+
+    .titles-container, .images-container {
+      display: flex;
+    }
+
+    .player-1-image, .player-2-image, .player-1-title, .player-2-title {
+      min-width: 110px;
+      .title {
+        font-weight: bold;
+      }
+    }
 
     .player-1-image {
       display: flex;
       flex-flow: column;
+    }
+
+    .player-2-image {
+      justify-content: center;
+      align-items: center;
+      display: flex;
     }
 
     img {
