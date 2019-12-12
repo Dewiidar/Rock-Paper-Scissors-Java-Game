@@ -29,15 +29,18 @@ export class GameStateService {
   }
 
   // ======= Score state =======
-  player1Score = 0;
-  player2Score = 0;
+  public player1ScoreSubject = new BehaviorSubject(0);
+  public player1ScoreObservable$ = this.player1ScoreSubject.asObservable();
+
+  public player2ScoreSubject = new BehaviorSubject(0);
+  public player2ScoreObservable$ = this.player2ScoreSubject.asObservable();
 
   // ======= Modal State =======
-  public isModalOpen = new BehaviorSubject(false);
-  public isModalOpenObservable$ = this.isModalOpen.asObservable();
+  public isModalOpenSubject = new BehaviorSubject(false);
+  public isModalOpenObservable$ = this.isModalOpenSubject.asObservable();
 
   public modalMessageSubject = new BehaviorSubject("");
-  public modalMessage = this.modalMessageSubject.asObservable();
+  public modalMessageObservable$ = this.modalMessageSubject.asObservable();
 
   // ======= Base Url for evaluating winner =======
   private baseUrl = "http://localhost:8080/game/v1";

@@ -21,17 +21,17 @@
       <div class="title">Player 1</div>
       <div class="sub-title">You</div>
 
-      <input type="radio" class="radio-button" #rock name="player1choice" value="rock" id="rock" (click)="onPlayer1ChoiceChange(rock.value)"/>
+      <input type="radio" class="radio-button" #rock name="player1choice" value="rock" id="rock" [checked]="model.player1choice === 'rock'" (click)="onPlayer1ChoiceChange(rock.value)"/>
       <label for="rock">
         <img src="/assets/images/rock-l.png" alt="">
       </label>
 
-      <input type="radio" class="radio-button" #paper name="player1choice" value="paper" id="paper" checked (click)="onPlayer1ChoiceChange(paper.value)"/>
+      <input type="radio" class="radio-button" #paper name="player1choice" value="paper" id="paper" [checked]="model.player1choice === 'paper'" (click)="onPlayer1ChoiceChange(paper.value)"/>
       <label for="paper">
         <img src="/assets/images/paper-l.png" alt="">
       </label>
 
-      <input type="radio" class="radio-button" #scissors name="player1choice" value="scissors" id="scissors" (click)="onPlayer1ChoiceChange(scissors.value)"/>
+      <input type="radio" class="radio-button" #scissors name="player1choice" value="scissors" id="scissors" [checked]="model.player1choice === 'scissors'" (click)="onPlayer1ChoiceChange(scissors.value)"/>
       <label for="scissors">
         <img src="/assets/images/scissors-l.png" alt="">
       </label>

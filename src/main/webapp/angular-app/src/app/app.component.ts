@@ -10,6 +10,7 @@ import {IModel, IPlayerChoice, IPlayerType} from "./services/i-game-state";
 export class AppComponent implements OnInit {
   // Player 2 choice (Random from server)
 
+  // Initialization object
   private model: IModel = {
     player1Type: 'player',
     player1choice: 'paper',
@@ -25,29 +26,39 @@ export class AppComponent implements OnInit {
     this.gameStateService.playerChoice = this.model.player1choice;
   }
 
-  onPlayer1TypeChange(value: string) {
+  private onPlayer1TypeChange(value: string) {
     this.gameStateService.playerType = <IPlayerType>value;
   }
 
-  onPlayer1ChoiceChange(value: string) {
+  private onPlayer1ChoiceChange(value: string) {
     this.gameStateService.playerChoice = <IPlayerChoice>value;
   }
 
-  evaluateWinner() {
+  private evaluateWinner() {
     this.gameStateService.evaluateWinner().subscribe(
       response => {
         console.log(response);
         if (response) {
+          // Updates player 2 image with the random choice returned from server
           this.updatePlayer2Image(response.resultsObject.player2Weapon);
+
+          // Updates player 1 selected choice (used when user 1 is computer and a random choice has been generated from backend for him)
+          this.model.player1choice = <IPlayerChoice>response.resultsObject.player1Weapon.toLowerCase();
+
+          // Iterates score
+          this.iterateScore(response.resultsObject.resultsMessage);
+
+          // Notifies modal with the new response message
           this.gameStateService.modalMessageSubject.next(response.resultsObject.resultsMessage);
-          this.gameStateService.isModalOpen.next(true);
+          // Opens modal
+          this.gameStateService.isModalOpenSubject.next(true);
         }
       },
       error => console.log(error)
     )
   }
 
-  updatePlayer2Image(returnedWeapon: string): void {
+  private updatePlayer2Image(returnedWeapon: string): void {
     switch (returnedWeapon) {
       case 'ROCK':
         this.model.player2choice = 'rock';
@@ -62,5 +73,18 @@ export class AppComponent implements OnInit {
         this.model.player2choice = this.gameStateService.playerChoice;
     }
 
+  }
+
+  private iterateScore(restultsMessage: string): void {
+    switch (restultsMessage) {
+      case "Player 1 wins!":
+        let player1Score = this.gameStateService.player1ScoreSubject.value;
+        this.gameStateService.player1ScoreSubject.next(++player1Score);
+        break;
+      case "Player 2 wins!":
+        let player2Score = this.gameStateService.player2ScoreSubject.value;
+        this.gameStateService.player2ScoreSubject.next(++player2Score);
+        break;
+    }
   }
 }

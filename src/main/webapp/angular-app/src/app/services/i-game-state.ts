@@ -2,7 +2,8 @@ export interface IResponseObject {
   resultsObject: {
     resultsMessage: string,
     weaponMessage: string,
-    player2Weapon: string
+    player2Weapon: string,
+    player1Weapon: string
   }
 }
 

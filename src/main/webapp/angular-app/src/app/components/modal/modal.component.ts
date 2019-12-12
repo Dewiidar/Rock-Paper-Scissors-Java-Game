@@ -26,7 +26,7 @@ export class ModalComponent implements OnInit {
     );
 
     // Get modal message
-    this.modalMessage = this.gameStateService.modalMessage
+    this.modalMessage = this.gameStateService.modalMessageObservable$
   }
 
   openModal() {
@@ -35,6 +35,6 @@ export class ModalComponent implements OnInit {
 
   closeModal() {
     this.isModalShown = false;
-    this.gameStateService.isModalOpen.next(false)
+    this.gameStateService.isModalOpenSubject.next(false)
   }
 }
