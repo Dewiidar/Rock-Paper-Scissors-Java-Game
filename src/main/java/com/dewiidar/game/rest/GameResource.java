@@ -1,21 +1,24 @@
 package com.dewiidar.game.rest;
 
+import com.dewiidar.game.model.RequestObject;
 import com.dewiidar.game.response.GameResponse;
+import com.fasterxml.jackson.core.util.RequestPayload;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
-import static com.dewiidar.game.rest.ResourcesConstants.GAME_V1;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(GAME_V1)
+@RequestMapping(ResourcesConstants.GAME_V1)
 public class GameResource {
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(path = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<GameResponse> getGameStatus() {
-        return new ResponseEntity<>(new GameResponse(10), HttpStatus.OK);
+    @ResponseBody
+    public ResponseEntity<GameResponse> getGameStatus(
+            @PathVariable("playerChoice") String playerChoice,
+            @PathVariable("playerType") String playerType
+    ) {
+        return new ResponseEntity<>(new GameResponse(playerChoice, playerType), HttpStatus.OK);
     }
 }
