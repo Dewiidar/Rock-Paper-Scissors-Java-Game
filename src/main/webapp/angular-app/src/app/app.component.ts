@@ -44,7 +44,6 @@ export class AppComponent implements OnInit {
   public evaluateWinner() {
     this.gameStateService.evaluateWinner().subscribe(
       response => {
-        console.log(response);
         if (response) {
           // Updates player 2 image with the random choice returned from server
           this.updatePlayer2Image(response.resultsObject.player2Weapon);

@@ -44,7 +44,6 @@ export class GameStateService {
   }
 
   public evaluateWinner(): Observable<IResponseObject> {
-    console.log(`${this.baseUrl}/${this.playerChoiceSubject.value}/${this.playerTypeSubject.value}`);
     return this.http.get<IResponseObject>(`${this.baseUrl}/${this.playerChoiceSubject.value}/${this.playerTypeSubject.value}`);
   }
 }
