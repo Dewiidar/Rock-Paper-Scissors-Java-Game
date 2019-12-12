@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {GameStateService} from "../../services/game-state.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-modal',
@@ -7,13 +9,24 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
-  isModalShown: boolean;
+  private isModalShown: boolean;
+  private modalMessage: Observable<string>;
 
-  constructor() {
+  constructor(private gameStateService: GameStateService) {
   }
 
   ngOnInit() {
+    // Subscribe to modal state to show model on state = true
+    this.gameStateService.isModalOpenObservable$.subscribe(
+      modalState => {
+        if (modalState) {
+          this.openModal()
+        }
+      }
+    );
 
+    // Get modal message
+    this.modalMessage = this.gameStateService.modalMessage
   }
 
   openModal() {
@@ -22,5 +35,6 @@ export class ModalComponent implements OnInit {
 
   closeModal() {
     this.isModalShown = false;
+    this.gameStateService.isModalOpen.next(false)
   }
 }

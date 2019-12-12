@@ -8,9 +8,12 @@ import {IModel, IPlayerChoice, IPlayerType} from "./services/i-game-state";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  // Player 2 choice (Random from server)
+
   private model: IModel = {
     player1Type: 'player',
-    player1choice: 'paper'
+    player1choice: 'paper',
+    player2choice: null
   };
 
   constructor(private gameStateService: GameStateService) {
@@ -30,11 +33,34 @@ export class AppComponent implements OnInit {
     this.gameStateService.playerChoice = <IPlayerChoice>value;
   }
 
-
   evaluateWinner() {
     this.gameStateService.evaluateWinner().subscribe(
-      response => console.log(response),
+      response => {
+        console.log(response);
+        if (response) {
+          this.updatePlayer2Image(response.resultsObject.player2Weapon);
+          this.gameStateService.modalMessageSubject.next(response.resultsObject.resultsMessage);
+          this.gameStateService.isModalOpen.next(true);
+        }
+      },
       error => console.log(error)
     )
+  }
+
+  updatePlayer2Image(returnedWeapon: string): void {
+    switch (returnedWeapon) {
+      case 'ROCK':
+        this.model.player2choice = 'rock';
+        break;
+      case 'PAPER':
+        this.model.player2choice = 'paper';
+        break;
+      case 'SCISSORS':
+        this.model.player2choice = 'scissors';
+        break;
+      case '':
+        this.model.player2choice = this.gameStateService.playerChoice;
+    }
+
   }
 }

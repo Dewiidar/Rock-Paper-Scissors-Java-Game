@@ -1,7 +1,8 @@
 export interface IResponseObject {
   resultsObject: {
     resultsMessage: string,
-    weaponMessage: string
+    weaponMessage: string,
+    player2Weapon: string
   }
 }
 
@@ -11,4 +12,5 @@ export type IPlayerChoice = "rock" | "paper" | "scissors";
 export interface IModel {
   player1Type: IPlayerType,
   player1choice: IPlayerChoice
+  player2choice: IPlayerChoice
 }

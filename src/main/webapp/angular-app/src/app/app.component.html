@@ -41,7 +41,9 @@
     <div class="player-2-image">
       <div class="title">Player 2</div>
       <div class="sub-title">Computer</div>
-      <img src="/assets/images/paper-r.png" alt="">
+      <ng-container *ngIf="model.player2choice">
+        <img src="/assets/images/{{model.player2choice}}-r.png" alt="">
+      </ng-container>
     </div>
   </div>
 

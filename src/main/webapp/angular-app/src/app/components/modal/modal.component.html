@@ -3,7 +3,7 @@
 
   <!-- Modal content -->
   <div class="modal-content">
-    <div class="message">Player X wins</div>
+    <div class="message">{{modalMessage | async}}</div>
     <button (click)="closeModal()">Play again</button>
   </div>
 
