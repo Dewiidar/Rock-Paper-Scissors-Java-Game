@@ -4,7 +4,8 @@ Rock Paper Scissors Java Game
 ## Game play:
 The game has two modes:
 ##### 1. Player (player 1) vs. Computer (player 2) 
-- You should choose a move from the images on the left  - Then click “Play” button at the bottom of the page. 
+- You should choose a move from the images on the left  
+- Then click “Play” button at the bottom of the page. 
 - Results will appear and score will be counted.
 ##### 2. Computer vs. computer 
 - Note: choices entered by user are ignored and backend generates random choices for player 1 and player 2
@@ -16,7 +17,7 @@ The game has two modes:
 ## Running app locally:
 ###### For SpringBoot, go to root directory and run: 
     ./gradlew bootRun
-######For Angular, go to directory (src/main/webapp/angular-app/) and run: 
+###### For Angular, go to directory (src/main/webapp/angular-app/) and run: 
     ng serve
 
 ## Notes: 
